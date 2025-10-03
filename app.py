@@ -1,12 +1,13 @@
 import streamlit as st
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
+# Title
 st.title("🌍 Language Translator Tool - CodeAlpha")
 
-translator = Translator()
-
+# Text input
 text = st.text_area("Enter text to translate:")
 
+# Languages
 languages = {
     "English": "en",
     "Hindi": "hi",
@@ -16,13 +17,16 @@ languages = {
     "Spanish": "es"
 }
 
+# Dropdowns for source and target
 source = st.selectbox("Select source language:", list(languages.keys()))
 target = st.selectbox("Select target language:", list(languages.keys()))
 
+# Translate button
 if st.button("Translate"):
     if text:
-        result = translator.translate(text, src=languages[source], dest=languages[target])
-        st.success(result.text)
+        # Use deep_translator instead of googletrans
+        result = GoogleTranslator(source=languages[source], target=languages[target]).translate(text)
+        st.success(f"**Translated Text:** {result}")
     else:
-        st.warning("⚠️ Please enter text.")
-
+        # Correct syntax for warning message (Fix for SyntaxError)
+        st.warning("⚠️ Please enter some text to translate.")
