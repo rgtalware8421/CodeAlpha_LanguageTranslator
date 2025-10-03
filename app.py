@@ -24,4 +24,5 @@ if st.button("Translate"):
         result = translator.translate(text, src=languages[source], dest=languages[target])
         st.success(result.text)
     else:
-        st.warning(⚠️ Please enter text.")
+        st.warning("⚠️ Please enter text.")
+
